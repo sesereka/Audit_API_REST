@@ -1,1 +1,29 @@
 
+3. Recommandations générales
+Dans le cadre de l’amélioration de la sécurité de l’API VAmPI, il est impératif de mettre en place un ensemble de mesures correctives visant à renforcer la protection contre les vulnérabilités identifiées. Ces recommandations s’inscrivent dans une démarche de sécurité en conformité avec les meilleures pratiques du secteur et les standards de l’OWASP.
+ 3.1 Mesures correctives prioritaires
+Renforcement du contrôle d’accès et des permissions :
+Il est essentiel d’implémenter un contrôle strict des identifiants utilisateurs afin de prévenir les failles liées à Broken Object Level Authorization (BOLA). Pour cela, chaque requête doit être systématiquement validée en fonction du rôle et des autorisations de l’utilisateur authentifié.
+Sécurisation de l’authentification :
+L’authentification doit être robuste et résiliente aux attaques en adoptant les pratiques suivantes :
+Mise en place d’une authentification multifactorielle (MFA) pour limiter le risque de compromission des comptes.
+Expiration et rotation des tokens JWT afin d’empêcher leur réutilisation indéfinie.
+Utilisation de clés de signature JWT sécurisées et implémentation d’une vérification stricte des signatures.
+ Protection des données sensibles :
+Les données doivent être protégées à toutes les étapes de leur cycle de vie :
+Chiffrement des données en transit avec TLS 1.2 ou supérieur.
+Chiffrement des données stockées (au repos) pour éviter toute compromission en cas de fuite de base de données.
+Utilisation de variables d’environnement pour stocker les secrets et credentials, plutôt que des fichiers statiques ou du code source.
+Renforcement de la sécurité applicative :
+Mise en place d’un pare-feu applicatif (WAF) pour filtrer et bloquer les requêtes malveillantes en amont de l’API.
+Activation et surveillance des logs d’accès et d’audit pour détecter toute tentative d’exploitation.
+Mise en place de mécanismes de rate limiting afin de limiter le nombre de requêtes par utilisateur et d’empêcher les attaques par bruteforce ou déni de service (DoS).
+Désactivation du mode debug et des endpoints d’administration exposés en environnement de production.
+Sécurisation de l’infrastructure et du déploiement :
+Audit et durcissement des configurations de sécurité dans le fichier Docker Compose et les images Docker utilisées.
+Application des principes du moindre privilège pour les containers et services associés.
+Mise en place de scans de vulnérabilités réguliers sur les dépendances, les bibliothèques et les frameworks utilisés.
+Renforcement des tests de sécurité :
+Automatisation des tests de sécurité en intégrant des solutions comme OWASP ZAP, Burp Suite et SonarQube dans le pipeline CI/CD.
+Audit de sécurité régulier basé sur l’OWASP API Security Top 10 - 2023 afin d’identifier et corriger les vulnérabilités émergentes.
+Tests d’intrusion périodiques réalisés par des experts en cybersécurité pour évaluer la résistance de l’API face aux attaques avancées.
